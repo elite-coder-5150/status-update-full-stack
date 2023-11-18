@@ -1,1 +1,1 @@
-export * from './status-update.controller';
+export *  from './status-update.controller';
