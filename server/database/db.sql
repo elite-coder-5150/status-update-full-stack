@@ -66,3 +66,15 @@ join users on n.notify_to = users.username;
 -- JOIN users ON n.notify_to = users.username
 -- WHERE n.notify_to = ?
 -- ORDER BY n.created_at DESC;
+
+use `status_updates`;
+-- SELECT su.*, u.username
+-- FROM status_updates AS su
+-- JOIN users AS u ON su.user_id = u.user_id
+-- WHERE u.user_id = ?
+
+alter table `status_updates`
+    add column `likes` int(11) not null after `status_text`;
+
+alter table `status_updates`
+    add column `shares` int(11) not null after `status_text`;
