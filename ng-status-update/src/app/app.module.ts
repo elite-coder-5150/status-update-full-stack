@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StatusUpdateComponent } from './status-update/status-update.component';
 import { NotificationComponent } from './notification/notification.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StatusUpdateComponent,
-    NotificationComponent
+    NotificationComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
