@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { StatusUpdate } from '../models/status-update';
-import { Observable } from 'rxjs';
+
 @Injectable({
     providedIn: 'root',
 })
@@ -10,52 +10,41 @@ export class StatusUpdateService {
 
     constructor() {}
 
-    getAllStatus(): Observable<StatusUpdate> {
-        return new Observable<StatusUpdate>((observer) => {
-            axios.get<StatusUpdate>(this.apiUrl)
-                .then((response) => {
-                    observer.next(response.data);
-                     observer.complete();
-                }).catch((error) => {
-                    observer.error(error);
-                })
-        });
+    getAllStatusUpdates(): Promise<StatusUpdate[]> {
+        return axios.get<StatusUpdate[]>(this.apiUrl)
+            .then(response => response.data)
+            .catch(error => {
+                throw error;
+            })
     }
-    getSingleStatus(statusId: number): Observable<StatusUpdate> {
+
+    getSingleStatusUpdate(statusId: number): Promise<StatusUpdate> {
+        const url = `${this.apiUrl}/status/${statusId}`;
+
+        return axios.get<StatusUpdate>(url)
+            .then(response => response.data)
+            .catch(err => {
+                throw err;
+            });
+    }
+
+    updateStatus(statusId: number, updatedStatus: StatusUpdate): Promise<StatusUpdate> {
         const url = `${this.apiUrl}/${statusId}`;
 
-        return new Observable<StatusUpdate>((observer) => {
-            axios.get<StatusUpdate>(url)
-                .then((response) => {
-                    observer.next(response.data);
-                    observer.complete();
-                }).catch((err) => {
-                    observer.error(err);
-                });
-        })
+        return axios.put<StatusUpdate>(url, updatedStatus)
+            .then(response => response.data)
+            .catch(err => {
+                throw err;
+            })
     }
-    update(statusId: number, updatedStatus: StatusUpdate) {
+
+    delete(statusId: number, updatedStatus: StatusUpdate): Promise<void> {
         const url = `${this.apiUrl}/${statusId}`;
-        return new Observable<StatusUpdate>((observer) => {
-            axios.put<StatusUpdate>(url)
-                .then((response) => {
-                    observer.next(response.data);
-                    observer.complete();
-                }).catch((err) => {
-                    observer.error(err);
-                });
-        })
-    }
-    delete(statusId: number): Observable<any> {
-        const url = `${this.apiUrl}/${statusId}`;
-        return new Observable<StatusUpdate>((observer) => {
-            axios.put<StatusUpdate>(url)
-                .then((response) => {
-                    observer.next(response.data);
-                    observer.complete();
-                }).catch((err) => {
-                    observer.error(err);
-                });
-        });
+
+        return axios.delete(url)
+            .then(() => {})
+            .catch(err => {
+                throw err;
+            });
     }
 }
