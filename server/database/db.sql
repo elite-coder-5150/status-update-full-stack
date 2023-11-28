@@ -78,3 +78,6 @@ alter table `status_updates`
 
 alter table `status_updates`
     add column `shares` int(11) not null after `status_text`;
+
+alter table `status_updates`
+    drop column `likes`;
