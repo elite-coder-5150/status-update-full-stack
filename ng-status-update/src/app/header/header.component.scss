@@ -1,0 +1,59 @@
+header {
+    display: flex;
+  justify-content: space-between;
+  align-items: center;
+    background: #fff;
+    height: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0;
+
+    .text-logo {
+        font-size: 20px;
+        max-width: 100px;
+    }
+
+    .icon {
+        margin-left: auto;
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        margin-top: calc(50px - 24px) / 2;
+        position: relative;
+
+        .number {
+            position: absolute;
+            font-size: 10px;
+            width: 16px;
+            height:16px;
+            color: #fff;
+            border-radius: 8px;
+            background: #1796E0;
+            left: 12px;
+            top: -5px;
+            text-align: center;
+            line-height: 16px;
+
+        }
+    }
+
+    .primary {
+        margin-left: 50px;
+        ul {
+            display: flex;
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        li {
+            margin-right: 40px;
+        }
+    }
+}
+.notification-icon {
+    background: url('../../assets/icons/notification-icon.svg') no-repeat;
+    width: 24px;
+    height: 24px;
+}
